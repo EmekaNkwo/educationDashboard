@@ -1,4 +1,2 @@
-export const getBaseUrl = () => {
-  const storedBaseUrl = window.sessionStorage.getItem("baseUrl");
-  return storedBaseUrl;
-};
+export const baseUrl =
+  typeof window !== "undefined" ? window.location.origin : "";

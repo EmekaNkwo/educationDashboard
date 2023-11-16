@@ -1,15 +1,15 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { getBaseUrl } from "../apiConfig";
+import { baseUrl } from "../apiConfig";
 
 export const studentApi = createApi({
   reducerPath: "student",
   refetchOnReconnect: true,
   refetchOnMountOrArgChange: 10,
   baseQuery: fetchBaseQuery({
-    baseUrl: getBaseUrl() + "/api/",
+    baseUrl: baseUrl + "/api/",
   }),
-  tagTypes: ["Students", "Role", "UsersRole"],
+  tagTypes: ["Students"],
   endpoints: (builder) => ({
     getStudents: builder.query({
       query: () => "student",
