@@ -29,7 +29,7 @@ const Sidebar = () => {
             <Layout
                 hasSider
                 style={{ padding: '24px 0', background: '#fff' }}
-                className='flex flex-col h-[90vh] top-0 sticky gap-8 overflow-hidden'
+                className='lg:flex lg:flex-col h-[90vh] top-0 sticky gap-8 overflow-hidden hidden'
             >
                 <Sider
                     breakpoint="lg"
