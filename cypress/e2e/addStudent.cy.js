@@ -1,5 +1,3 @@
-// cypress/integration/addStudentModal.spec.js
-
 describe("Add Student", () => {
   it("should add a new student", () => {
     // Visit the page where the component is rendered
