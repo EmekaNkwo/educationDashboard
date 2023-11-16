@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# PEABUX ASSESSMENT
 
-## Getting Started
+## Overview
 
-First, run the development server:
+This is an application that allows the creation and fetching of students and teachers data from a database. The Application was built using Nexjs, Redux Toolkit, Antd, Next API, MongoDB,TailwindCSS and Cypress.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Logs
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Created a NextJs application
+- Used TailwindCSS and Antd for styling of components and pages
+- Implemented global state management using Redux Toolkit and RTK Query
+- Used Next API to fetch data from MongoDB database
+- Implemented Cypress to run end-to-end tests for the application
+- Added responsiveness to the application
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Creation of students and teachers profiles
+- Fetching students and teachers from the database
 
-## Learn More
+## Get Started
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Clone the repository
+- Run `npm install` to install dependencies
+- Run `npm run dev` to start the application
+- Visit http://localhost:3000 to see the application
+- Run `npx cypress open` to run tests
