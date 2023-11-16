@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is an application that allows the creation and fetching of students and teachers data from a database. The Application was built using Nexjs, Redux Toolkit, Antd, Next API, MongoDB,TailwindCSS and Cypress.
+This is an application that allows the creation and fetching of students and teachers data from a database. The Application was built using Nexjs, TypeScript, Redux Toolkit, Antd, Next API, MongoDB,TailwindCSS and Cypress.
 
 ## Logs
 
