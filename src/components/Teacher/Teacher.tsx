@@ -21,7 +21,7 @@ const Teacher = () => {
             )}
             <div className="flex flex-col gap-2">
                 <div className="flex justify-end">
-                    <FilledButton name="Add Teacher" dataCy='add_teacher_button' onClick={toggleCreateModal} className="bg-blue-500 text-[white]" />
+                    <FilledButton name="Add Teacher" dataCy='add_teacher_modal_button' onClick={toggleCreateModal} className="bg-blue-500 text-[white]" />
                 </div>
                 <TeacherList />
             </div>
