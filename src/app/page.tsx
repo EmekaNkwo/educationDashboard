@@ -1,5 +1,6 @@
 "use client"
 
+import { Spin } from 'antd'
 import { usePathname, useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
 
@@ -10,8 +11,6 @@ export default function Home() {
 
   useEffect(() => {
     if (path === '/') {
-      const currentOrigin = window.location.origin;
-      sessionStorage.setItem("baseUrl", currentOrigin);
       push('/teacher')
     }
 
@@ -19,6 +18,8 @@ export default function Home() {
 
   }, [path, push])
   return (
-    <></>
+    <div className='flex justify-center items-center mt-[4rem]'>
+      <Spin />
+    </div>
   )
 }
