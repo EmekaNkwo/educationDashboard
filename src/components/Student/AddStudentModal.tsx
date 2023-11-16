@@ -45,7 +45,8 @@ const AddStudentModal = ({ isModalOpen, setOpenModal }: IModalProps) => {
             setOpenModal(false)
         }
         if (isError) {
-            console.log(error);
+            const errorMesg = error as any
+            message.error(errorMesg?.message)
         }
     }, [isSuccess, isError, error, setOpenModal])
 
