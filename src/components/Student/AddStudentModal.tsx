@@ -1,13 +1,54 @@
+import { useCreateStudentMutation } from '@/redux/api/studentApi';
 import { FilledButton } from '@/shared/UIs/CustomButtons';
-import { InputField, PhoneNumberInput, SelectField } from '@/shared/UIs/InputField';
-import { Modal } from 'antd'
-import React from 'react'
+import { InputField } from '@/shared/UIs/InputField';
+import { Modal, message } from 'antd'
+import React, { useState, useEffect } from 'react'
 
 interface IModalProps {
     isModalOpen: boolean;
     setOpenModal?: boolean | any;
 }
 const AddStudentModal = ({ isModalOpen, setOpenModal }: IModalProps) => {
+    const [nationalId, setNationalId] = useState<number | undefined>(undefined);
+    const [firstName, setFirstName] = useState<string>('');
+    const [surname, setSurname] = useState<string>('');
+    const [dob, setDob] = useState<string>('');
+    const [phoneNumber, setPhoneNumber] = useState<string>('');
+
+    const handlePhoneChange = (value: string) => {
+        setPhoneNumber(value)
+    }
+
+    const [createStudent, { isLoading, isSuccess, isError, error }] = useCreateStudentMutation()
+    const onSubmitDetails = async (e: React.SyntheticEvent) => {
+        e.preventDefault()
+        if (!nationalId || !firstName || !surname || !dob || !phoneNumber) {
+            message.error('Please fill all the fields')
+            return
+        }
+        const payload = {
+            firstname: firstName,
+            surname: surname,
+            nationalId: nationalId,
+            dob: dob,
+            student_number: phoneNumber
+        }
+
+        if (payload) {
+            await createStudent(payload)
+        }
+    }
+
+    useEffect(() => {
+        if (isSuccess) {
+            message.success('Student added successfully')
+            setOpenModal(false)
+        }
+        if (isError) {
+            console.log(error);
+        }
+    }, [isSuccess, isError, error, setOpenModal])
+
     return (
         <Modal
             title="Add Student"
@@ -25,19 +66,20 @@ const AddStudentModal = ({ isModalOpen, setOpenModal }: IModalProps) => {
                 }
             }}
         >
-            <form className="flex flex-col gap-2 mt-[1rem]">
+            <form className="flex flex-col gap-2 mt-[1rem]" onSubmit={onSubmitDetails} >
                 <div className="flex items-center gap-2">
-                    <InputField title='National ID number' type='number' />
+
+                    <InputField data-cy='nationalId_input' title='National ID number' type='number' value={nationalId} onChange={(e) => setNationalId(Number(e.target.value))} />
+                </div>
+                <div className="flex items-center gap-2" >
+                    <InputField data-cy='firstName_input' title='First Name' value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+                    <InputField data-cy='surname_input' title='Surname' value={surname} onChange={(e) => setSurname(e.target.value)} />
                 </div>
                 <div className="flex items-center gap-2">
-                    <InputField title='First Name' />
-                    <InputField title='Surname' />
+                    <InputField data-cy='dob_input' title='Date of Birth' type='date' value={dob} onChange={(e) => setDob(e.target.value)} />
+                    <InputField data-cy='phone_input' title='Phone Number' type='number' value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
                 </div>
-                <div className="flex items-center gap-2">
-                    <InputField title='Date of Birth' type='date' />
-                    <PhoneNumberInput title='Phone Number' />
-                </div>
-                <FilledButton name="Add Student" className="bg-blue-500 text-[white] mt-[1rem]" />
+                {isLoading ? <p className='text-center mt-3 font-bold'>Adding...</p> : <FilledButton data-cy='add_student_button' name="Add Student" className="bg-blue-500 text-[white] mt-[1rem]" />}
             </form>
         </Modal>
     )

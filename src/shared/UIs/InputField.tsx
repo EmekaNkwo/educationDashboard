@@ -4,10 +4,11 @@ import PhoneInput from "react-phone-input-2";
 
 
 interface IPhoneInputProps {
-    onChange?: () => void;
+    onChange?: (value: string) => void;
     value?: string;
     title?: string;
     inputStyle?: Record<string, any>;
+    dataCy?: string
 }
 
 interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -16,20 +17,21 @@ interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 interface ISelectProps extends SelectProps {
-    onChange?: () => void;
+    onChange?: (value: string) => void;
     value?: string;
     placeholder?: string;
     title: string;
     type?: string
     className?: string
 }
-export const PhoneNumberInput = ({ onChange, value, title, inputStyle }: IPhoneInputProps) => {
+export const PhoneNumberInput = ({ onChange, value, title, inputStyle, dataCy }: IPhoneInputProps) => {
     return (
         <div className="flex flex-col gap-2 w-full ">
             {
                 title && (<span className='font-medium  text-[14px] leading-[22px] '>{title}</span>)
             }
             <PhoneInput
+
                 onlyCountries={["ng"]} // Provide an array of country codes for the allowed countries
                 country={"ng"}
                 value={value}

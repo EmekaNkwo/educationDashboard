@@ -3,6 +3,7 @@ import { Karla } from 'next/font/google'
 import './globals.css'
 import 'react-phone-input-2/lib/style.css'
 import StyledComponentsRegistry from '@/lib/AntdesignRegistry'
+import { ReduxProvider } from '@/redux/provider'
 
 const karla = Karla({ subsets: ['latin'] })
 
@@ -19,9 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={karla.className}>
-        <StyledComponentsRegistry>
-          {children}
-        </StyledComponentsRegistry>
+        <ReduxProvider>
+          <StyledComponentsRegistry>
+            {children}
+          </StyledComponentsRegistry>
+        </ReduxProvider>
       </body>
     </html>
   )

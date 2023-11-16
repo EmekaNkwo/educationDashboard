@@ -4,6 +4,7 @@ interface ButtonPropTypes {
     onClick?: () => void;
     icon?: JSX.Element;
     disabled?: boolean;
+    dataCy?: string
 }
 
 export const FilledButton = ({
@@ -12,9 +13,12 @@ export const FilledButton = ({
     icon,
     className,
     disabled,
+    dataCy
 }: ButtonPropTypes) => {
     return (
         <button
+            data-cy={dataCy}
+            role="button"
             onClick={onClick}
             style={{
                 padding: "0.5rem 1rem",

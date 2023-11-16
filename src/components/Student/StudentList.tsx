@@ -1,30 +1,25 @@
+"use client"
 import { ColumnsType } from 'antd/es/table';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Table } from 'antd';
+import { useGetStudentsQuery } from '@/redux/api/studentApi';
 
-interface DataType {
-    id: number
-    nationalId: string;
-    title: string;
-    salary?: string;
-    firstName: string;
-    surname: string;
-    phone_number?: string;
-    dob: string;
-}
+const StudentList = () => {
+    const { data, isLoading, isSuccess, isError, error } = useGetStudentsQuery({})
+    const [students, setStudents] = useState<Student[]>([]);
+    useEffect(() => {
+        if (isSuccess) {
+            setStudents(data?.data)
+        }
+        if (isError) {
+            console.log(error);
+        }
+    }, [data, error, isError, isSuccess])
+    const columns: ColumnsType<Student> = [
 
-interface IProps {
-    data?: DataType[]
-}
-const StudentList = ({ data }: IProps) => {
-    const columns: ColumnsType<DataType> = [
-        {
-            title: 'Title',
-            dataIndex: 'title',
-        },
         {
             title: 'First Name',
-            dataIndex: 'firstName',
+            dataIndex: 'firstname',
         },
         {
             title: 'Surname',
@@ -32,15 +27,11 @@ const StudentList = ({ data }: IProps) => {
         },
         {
             title: 'Phone Number',
-            dataIndex: 'phone_number',
+            dataIndex: 'student_number',
         },
         {
             title: 'National ID',
             dataIndex: 'nationalId',
-        },
-        {
-            title: 'Salary',
-            dataIndex: 'salary',
         },
         {
             title: 'Date of Birth',
@@ -51,7 +42,7 @@ const StudentList = ({ data }: IProps) => {
     ];
     return (
         <>
-            <Table columns={columns} className='shadow-sm' dataSource={data} scroll={{ x: 600 }} bordered />
+            <Table columns={columns} pagination={false} loading={isLoading} className='shadow-sm' dataSource={students} scroll={{ x: 600 }} bordered />
         </>
     )
 }

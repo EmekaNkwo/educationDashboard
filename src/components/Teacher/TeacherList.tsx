@@ -1,30 +1,31 @@
+"use client";
 import { ColumnsType } from 'antd/es/table';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Table } from 'antd';
 
-interface DataType {
-    id: number
-    nationalId: string;
-    title: string;
-    salary?: string;
-    firstName: string;
-    surname: string;
-    phone_number?: string;
-    dob: string;
-}
+import { useGetTeachersQuery } from '@/redux/api/teacherApi';
 
-interface IProps {
-    data?: DataType[]
-}
-const TeacherList = ({ data }: IProps) => {
-    const columns: ColumnsType<DataType> = [
+const TeacherList = () => {
+    const { data, isLoading, isSuccess, isError, error } = useGetTeachersQuery({})
+    const [teachers, setTeachers] = useState<ITeacher[]>([]);
+
+    useEffect(() => {
+        if (isSuccess) {
+            setTeachers(data?.data)
+        }
+        if (isError) {
+            console.log(error);
+        }
+    }, [data?.data, error, isError, isSuccess]);
+
+    const columns: ColumnsType<ITeacher> = [
         {
             title: 'Title',
             dataIndex: 'title',
         },
         {
             title: 'First Name',
-            dataIndex: 'firstName',
+            dataIndex: 'firstname',
         },
         {
             title: 'Surname',
@@ -32,7 +33,7 @@ const TeacherList = ({ data }: IProps) => {
         },
         {
             title: 'Phone Number',
-            dataIndex: 'phone_number',
+            dataIndex: 'teacher_number',
         },
         {
             title: 'National ID',
@@ -40,18 +41,17 @@ const TeacherList = ({ data }: IProps) => {
         },
         {
             title: 'Salary',
-            dataIndex: 'salary',
+            dataIndex: "salary",
+            render: (salary: string | number) => <span>{salary === null ? 'N/A' : salary}</span>,
         },
         {
             title: 'Date of Birth',
             dataIndex: 'dob',
         }
-
-
     ];
     return (
         <>
-            <Table columns={columns} className='shadow-sm' dataSource={data} scroll={{ x: 600 }} bordered />
+            <Table columns={columns} pagination={false} loading={isLoading} className='shadow-sm' dataSource={teachers} scroll={{ x: 600 }} bordered />
         </>
     )
 }
