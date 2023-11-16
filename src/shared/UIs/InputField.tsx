@@ -1,5 +1,5 @@
 import { InputHTMLAttributes } from 'react';
-import { ConfigProvider, Select, SelectProps } from "antd";
+import { ConfigProvider, Select, } from "antd";
 import PhoneInput from "react-phone-input-2";
 
 
@@ -16,12 +16,9 @@ interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
     title: string;
 }
 
-interface ISelectProps extends SelectProps {
-    onChange?: (value: string) => void;
-    value?: string;
-    placeholder?: string;
+interface ISelectProps extends InputHTMLAttributes<HTMLSelectElement> {
     title: string;
-    type?: string
+    options: Array<Record<string, any>>;
     className?: string
 }
 export const PhoneNumberInput = ({ onChange, value, title, inputStyle, dataCy }: IPhoneInputProps) => {
@@ -62,27 +59,22 @@ export const InputField = ({ title, className, ...props }: IInputProps) => {
         </div>
     )
 }
-export const SelectField = ({ title, className, ...props }: ISelectProps) => {
+
+export const SelectField = ({ title, className, options, ...props }: ISelectProps) => {
     return (
         <div className="flex flex-col gap-2 w-full">
             {
                 title && (<span className='font-medium text-[14px] leading-[22px] '>{title}</span>)
             }
-            <ConfigProvider
-                theme={{
-                    token: {
-                        colorPrimary: "#919191",
-                        borderRadius: 4,
-                        colorText: "#000",
-                    },
-                }}
-            >
-                <Select
-                    className={`${className} h-[40px] rounded-md focus:outline-none  `}
-                    {...props}
-                />
-            </ConfigProvider>
+            <select className={`border-[1px] border-[#919191] h-[40px] bg-transparent py-1 px-2 rounded-md placeholder:text-sm outline-none ${className}`} {...props}>
+                {
+                    options.map((item: Record<string, any>, index) => (
+                        <option key={index} value={item.value}>{item.label}</option>
+                    ))
+                }
+            </select>
 
         </div>
     )
 }
+
