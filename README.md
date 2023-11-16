@@ -11,7 +11,6 @@ This is an application that allows the creation and fetching of students and tea
 - Implemented global state management using Redux Toolkit and RTK Query
 - Used Next API to fetch data from MongoDB database
 - Implemented Cypress to run end-to-end tests for the application
-- Added responsiveness to the application
 
 ## Features
 
