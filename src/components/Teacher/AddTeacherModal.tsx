@@ -6,6 +6,10 @@ import React, { useState, useEffect } from 'react'
 
 const preFix = [
     {
+        value: '',
+        label: 'Select'
+    },
+    {
         value: 'Mr',
         label: 'Mr'
     },
@@ -96,7 +100,7 @@ const AddTeacherModal = ({ isModalOpen, setOpenModal }: IModalProps) => {
             <form className="flex flex-col gap-2 mt-[1rem]" onSubmit={onSubmitDetails}>
                 <div className="flex items-center gap-2">
                     <InputField title='National ID number' data-cy='nationalId_input' value={nationalId} onChange={(e) => setNationalId(e.target.value)} />
-                    <SelectField title='Title' options={preFix} value={title} onChange={onSelectTitleChange} />
+                    <SelectField title='Title' data-cy='title_input' options={preFix} value={title} onChange={(e) => setTitle(e.target.value)} />
                 </div>
                 <div className="flex items-center gap-2">
                     <InputField title='First Name' data-cy='firstName_input' value={firstName} onChange={(e) => setFirstName(e.target.value)} />
@@ -108,7 +112,7 @@ const AddTeacherModal = ({ isModalOpen, setOpenModal }: IModalProps) => {
                 </div>
                 <InputField title='Salary' type='number' data-cy='salary_input' value={salary} onChange={(e) => setSalary(Number(e.target.value))} />
                 {
-                    isLoading ? <p className='text-center mt-3 font-bold'>Adding...</p> : <FilledButton data-cy='add_teacher_button' name='Add Teacher' className="bg-blue-500 text-[white] mt-[1rem]" />
+                    isLoading ? <p className='text-center mt-3 font-bold'>Adding...</p> : <FilledButton dataCy='add_teacher_button' name='Add Teacher' className="bg-blue-500 text-[white] mt-[1rem]" />
                 }
             </form>
         </Modal>
