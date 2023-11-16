@@ -41,8 +41,8 @@ const AddTeacherModal = ({ isModalOpen, setOpenModal }: IModalProps) => {
     const [firstName, setFirstName] = useState<string>('');
     const [surname, setSurname] = useState<string>('');
     const [dob, setDob] = useState<string>('');
-    const [phoneNumber, setPhoneNumber] = useState<string>('');
-    const [salary, setSalary] = useState<number>(0);
+    const [phoneNumber, setPhoneNumber] = useState<number>();
+    const [salary, setSalary] = useState<number>();
 
     const [createTeacher, { isLoading, isSuccess, isError, error }] = useCreateTeacherMutation()
 
@@ -108,9 +108,9 @@ const AddTeacherModal = ({ isModalOpen, setOpenModal }: IModalProps) => {
                 </div>
                 <div className="flex items-center gap-2">
                     <InputField title='Date of Birth' type='date' data-cy='dob_input' value={dob} onChange={(e) => setDob(e.target.value)} />
-                    <InputField title='Phone Number' type='number' data-cy='phone_input' value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+                    <InputField title='Phone Number' type='number' data-cy='phone_input' value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value as unknown as number)} />
                 </div>
-                <InputField title='Salary' type='number' data-cy='salary_input' value={salary} onChange={(e) => setSalary(Number(e.target.value))} />
+                <InputField title='Salary' type='number' data-cy='salary_input' value={salary} onChange={(e) => setSalary(e.target.value as unknown as number)} />
                 {
                     isLoading ? <p className='text-center mt-3 font-bold'>Adding...</p> : <FilledButton dataCy='add_teacher_button' name='Add Teacher' className="bg-blue-500 text-[white] mt-[1rem]" />
                 }
