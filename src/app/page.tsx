@@ -1,11 +1,18 @@
-import { Spin } from 'antd'
-import Image from 'next/image'
+"use client"
 
+import { usePathname, useRouter } from 'next/navigation'
+import React, { useEffect } from 'react'
 export default function Home() {
+  const path = usePathname()
+  const { push } = useRouter()
+  console.log(path);
+
+  useEffect(() => {
+    if (path === '/') {
+      push('/teacher')
+    }
+  }, [path, push])
   return (
-    <main className="flex min-h-screen flex-col items-center gap-2 p-24">
-      <h1>Coming Soon</h1>
-      <Spin />
-    </main>
+    <></>
   )
 }

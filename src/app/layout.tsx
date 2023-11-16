@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Karla } from 'next/font/google'
 import './globals.css'
+import 'react-phone-input-2/lib/style.css'
 import StyledComponentsRegistry from '@/lib/AntdesignRegistry'
 
 const karla = Karla({ subsets: ['latin'] })
