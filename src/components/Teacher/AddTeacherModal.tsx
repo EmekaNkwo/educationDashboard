@@ -99,15 +99,15 @@ const AddTeacherModal = ({ isModalOpen, setOpenModal }: IModalProps) => {
             }}
         >
             <form className="flex flex-col gap-2 mt-[1rem]" onSubmit={onSubmitDetails}>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 lg:flex-row flex-col">
                     <InputField title='National ID number' data-cy='nationalId_input' value={nationalId} onChange={(e) => setNationalId(e.target.value)} />
                     <SelectField title='Title' data-cy='title_input' options={preFix} value={title} onChange={(e) => setTitle(e.target.value)} />
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 lg:flex-row flex-col">
                     <InputField title='First Name' data-cy='firstName_input' value={firstName} onChange={(e) => setFirstName(e.target.value)} />
                     <InputField title='Surname' data-cy='surname_input' value={surname} onChange={(e) => setSurname(e.target.value)} />
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 lg:flex-row flex-col">
                     <InputField title='Date of Birth' type='date' data-cy='dob_input' value={dob} onChange={(e) => setDob(e.target.value)} />
                     <InputField title='Phone Number' type='number' data-cy='phone_input' value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value as unknown as number)} />
                 </div>

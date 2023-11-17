@@ -72,11 +72,11 @@ const AddStudentModal = ({ isModalOpen, setOpenModal }: IModalProps) => {
 
                     <InputField data-cy='nationalId_input' title='National ID number' type='number' value={nationalId} onChange={(e) => setNationalId(Number(e.target.value))} />
                 </div>
-                <div className="flex items-center gap-2" >
+                <div className="flex items-center gap-2 lg:flex-row flex-col" >
                     <InputField data-cy='firstName_input' title='First Name' value={firstName} onChange={(e) => setFirstName(e.target.value)} />
                     <InputField data-cy='surname_input' title='Surname' value={surname} onChange={(e) => setSurname(e.target.value)} />
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 lg:flex-row flex-col">
                     <InputField data-cy='dob_input' title='Date of Birth' type='date' value={dob} onChange={(e) => setDob(e.target.value)} />
                     <InputField data-cy='phone_input' title='Phone Number' type='number' value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
                 </div>
