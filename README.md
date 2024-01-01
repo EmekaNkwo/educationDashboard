@@ -1,4 +1,4 @@
-# PEABUX ASSESSMENT
+# Education Dashboard
 
 ## Overview [Live Demo](https://hayeducationdashboard.vercel.app/teacher)
 
