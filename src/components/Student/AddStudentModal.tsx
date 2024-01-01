@@ -15,10 +15,6 @@ const AddStudentModal = ({ isModalOpen, setOpenModal }: IModalProps) => {
     const [dob, setDob] = useState<string>('');
     const [phoneNumber, setPhoneNumber] = useState<string>('');
 
-    const handlePhoneChange = (value: string) => {
-        setPhoneNumber(value)
-    }
-
     const [createStudent, { isLoading, isSuccess, isError, error }] = useCreateStudentMutation()
     const onSubmitDetails = async (e: React.SyntheticEvent) => {
         e.preventDefault()
@@ -67,20 +63,20 @@ const AddStudentModal = ({ isModalOpen, setOpenModal }: IModalProps) => {
                 }
             }}
         >
-            <form className="flex flex-col gap-2 mt-[1rem]" onSubmit={onSubmitDetails} >
+            <form className="flex flex-col gap-2 mt-[1rem]" onSubmit={onSubmitDetails} data-testid="add_student_form" >
                 <div className="flex items-center gap-2">
 
-                    <InputField data-cy='nationalId_input' title='National ID number' type='number' value={nationalId} onChange={(e) => setNationalId(Number(e.target.value))} />
+                    <InputField data-testid="nationalId" data-cy='nationalId_input' title='National ID number' type='number' value={nationalId} onChange={(e) => setNationalId(Number(e.target.value))} />
                 </div>
                 <div className="flex items-center gap-2 lg:flex-row flex-col" >
-                    <InputField data-cy='firstName_input' title='First Name' value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-                    <InputField data-cy='surname_input' title='Surname' value={surname} onChange={(e) => setSurname(e.target.value)} />
+                    <InputField data-testid="firstName" data-cy='firstName_input' title='First Name' value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+                    <InputField data-testid="surname" data-cy='surname_input' title='Surname' value={surname} onChange={(e) => setSurname(e.target.value)} />
                 </div>
                 <div className="flex items-center gap-2 lg:flex-row flex-col">
-                    <InputField data-cy='dob_input' title='Date of Birth' type='date' value={dob} onChange={(e) => setDob(e.target.value)} />
-                    <InputField data-cy='phone_input' title='Phone Number' type='number' value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+                    <InputField data-testid="dob" data-cy='dob_input' title='Date of Birth' type='date' value={dob} onChange={(e) => setDob(e.target.value)} />
+                    <InputField data-testid="phoneNumber" data-cy='phone_input' title='Phone Number' type='number' value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
                 </div>
-                {isLoading ? <p className='text-center mt-3 font-bold'>Adding...</p> : <FilledButton data-cy='add_student_button' name="Add Student" className="bg-blue-500 text-[white] mt-[1rem]" />}
+                {isLoading ? <p className='text-center mt-3 font-bold'>Adding...</p> : <FilledButton data-testid="add_student" data-cy='add_student_button' name="Add Student" className="bg-blue-500 text-[white] mt-[1rem]" />}
             </form>
         </Modal>
     )
